@@ -45,25 +45,48 @@ require 'header.php';
                     </div>
                     <div class="panel-body" style="height: 400px;" id="formRegistros">
                         <form name="formulario" id="formulario" method="POST">
+
+                            <!-- Input Nombre -->
                             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label>Nombre</label>
                                 <input type="hidden" name="idarticulo" id="idarticulo">
                                 <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" 
                                     maxlength="100" required>
                             </div>
+
+                            <!-- Select Categoría -->
                             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label>Categoría</label>
-                                <select name="idcategoria" id="idcategoria" required></select>
+                                <select name="idcategoria" id="idcategoria" class="form-control" required></select>
                             </div>
+
+                            <!-- Input Stock -->
                             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label>Stock</label>
                                 <input type="number" class="form-control" name="stock" id="stock" required>
                             </div>
+
+                            <!-- Input Descripción -->
                             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label>Descripción</label>
                                 <input type="text" class="form-control" name="descripcion" id="descripcion" 
                                     placeholder="Descripción" maxlength="256">
                             </div>
+
+                            <!-- Input Imagen -->
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <label>Imagen</label>
+                                <input type="file" class="form-control" name="imagen" id="imagen">
+                            </div>
+
+                            <!-- Input Código -->
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <label>Código</label>
+                                <input type="text" class="form-control" name="codigo" id="codigo"
+                                    placeholder="Código de barras">
+                            </div>
+
+                            <!-- Guardar -->
                             <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <button class="btn btn-primary" type="submit" id="btnGuardar">
                                     <i class="fa fa-save"></i>
@@ -75,6 +98,7 @@ require 'header.php';
                                     Cancelar
                                 </button>
                             </div>
+
                         </form>
                     </div>
                     <!--Fin centro -->

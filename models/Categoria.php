@@ -60,5 +60,15 @@
 
             return ejecutarConsulta($sql);
         }
+
+        //El resultado se carga en el select de la vista de artículo
+        public function select()
+        {
+            $sql = "SELECT *
+                    FROM categoria
+                    WHERE activo = 1";
+
+            return ejecutarConsulta($sql);
+        }
     }
 ?>

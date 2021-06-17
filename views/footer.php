@@ -23,5 +23,8 @@
 
     <!--Estilo de las alertas SweetAlert-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- Select -->
+    <script src="../public/js/bootstrap-select.min.js"></script>
   </body>
 </html>

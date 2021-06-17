@@ -48,7 +48,7 @@ require 'header.php';
 
                             <!-- Input Nombre -->
                             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <label>Nombre</label>
+                                <label>Nombre(*)</label>
                                 <input type="hidden" name="idarticulo" id="idarticulo">
                                 <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" 
                                     maxlength="100" required>
@@ -56,8 +56,9 @@ require 'header.php';
 
                             <!-- Select Categoría -->
                             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <label>Categoría</label>
-                                <select name="idcategoria" id="idcategoria" class="form-control" required></select>
+                                <label>Categoría(*)</label>
+                                <select name="idcategoria" id="idcategoria" class="form-control selectpicker" 
+                                    data-live-search="true" required></select>
                             </div>
 
                             <!-- Input Stock -->

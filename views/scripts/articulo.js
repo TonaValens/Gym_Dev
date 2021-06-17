@@ -7,6 +7,11 @@ function init() {
     $("#formulario").on("submit", function (e) {
         guardar(e);
     });
+
+    $.post("../ajax/articulo.php?accion=categoria", function(response){
+        $("#idcategoria").html(response);
+        $('#idcategoria').selectpicker('refresh');
+    });
 }
 
 function limpiar() {
@@ -80,7 +85,7 @@ function guardar(e) {
         success: function (datos) {
             swal({
                 title: "Éxito",
-                text: "Categoría agregada",
+                text: "Artículo agregado",
                 icon: "success",
             });
             mostrarForm(false);

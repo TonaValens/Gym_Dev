@@ -21,12 +21,12 @@ switch ($_GET["accion"]) {
         }
         else
         {
-            if($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || $_FILES['imagen']['type'] == "image/png") 
-            {
-                $ext = explode(".", $_FILES['imagen']['name']);
+            $ext = explode(".", $_FILES['imagen']['name']);
 
+            if($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || $_FILES['imagen']['type'] == "image/png") 
+            {               
                 $imagen = round(microtime(true)) .  '.' . end($ext);
-                move_uploaded_file($_FILES["imagen"]["tmp_name"], "..files/articulos/" . $imagen);
+                move_uploaded_file($_FILES["imagen"]["tmp_name"], "../files/articulos/" . $imagen);
             }
         }
 
@@ -72,7 +72,7 @@ switch ($_GET["accion"]) {
                 "2" => $reg->categoria,
                 "3" => $reg->codigo,
                 "4" => $reg->stock,
-                "5" => "<img src='..files/articulos/". $reg->imagen ."' height='50px' width='50px'>",
+                "5" => "<img src='../files/articulos/". $reg->imagen ."' height='50px' width='50px'>",
                 "6" => ($reg->activo) ? '<span class="label bg-green">Activada</span>' : 
                                         '<span class="label bg-red">Desactivada</span>'
             );
@@ -86,6 +86,18 @@ switch ($_GET["accion"]) {
         );
 
         echo json_encode($result);
+        break;
+
+    case "categoria":
+        require_once "../models/Categoria.php";
+        $categoria = new Categoria();
+
+        $response = $categoria->select();
+
+        while($registros = $response->fetch_object())
+        {
+            echo '<option value=' . $registros->idcategoria . '> ' . $registros->nombre . '</option>';
+        }
         break;
 
     default:

@@ -11,8 +11,12 @@ require 'header.php';
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h1 class="box-title">Artículo<button class="btn btn-success" onclick="mostrarForm(true)">
-                                <i class="fa fa-plus-circle"></i> Agregar</button></h1>
+                        <h1 class="box-title">Artículo
+                            <button class="btn btn-success" onclick="mostrarForm(true)" id="btnAgregar">
+                                <i class="fa fa-plus-circle"></i>
+                                Agregar
+                            </button>
+                        </h1>
                         <div class="box-tools pull-right">
                         </div>
                     </div>
@@ -23,6 +27,7 @@ require 'header.php';
                             <thead>
                                 <th>Opciones</th>
                                 <th>Nombre</th>
+                                <th>Categoría</th>
                                 <th>Descripción</th>
                                 <th>Código</th>
                                 <th>Stock</th>
@@ -35,6 +40,7 @@ require 'header.php';
                             <tfoot>
                                 <th>Opciones</th>
                                 <th>Nombre</th>
+                                <th>Categoría</th>
                                 <th>Descripción</th>
                                 <th>Código</th>
                                 <th>Stock</th>
@@ -43,22 +49,20 @@ require 'header.php';
                             </tfoot>
                         </table>
                     </div>
-                    <div class="panel-body" style="height: 400px;" id="formRegistros">
+                    <div class="panel-body" id="formRegistros">
                         <form name="formulario" id="formulario" method="POST">
 
                             <!-- Input Nombre -->
                             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label>Nombre(*)</label>
                                 <input type="hidden" name="idarticulo" id="idarticulo">
-                                <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" 
-                                    maxlength="100" required>
+                                <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" maxlength="100" required>
                             </div>
 
                             <!-- Select Categoría -->
                             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label>Categoría(*)</label>
-                                <select name="idcategoria" id="idcategoria" class="form-control selectpicker" 
-                                    data-live-search="true" required></select>
+                                <select name="idcategoria" id="idcategoria" class="form-control selectpicker" data-live-search="true" required></select>
                             </div>
 
                             <!-- Input Stock -->
@@ -70,21 +74,30 @@ require 'header.php';
                             <!-- Input Descripción -->
                             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label>Descripción</label>
-                                <input type="text" class="form-control" name="descripcion" id="descripcion" 
-                                    placeholder="Descripción" maxlength="256">
+                                <input type="text" class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" maxlength="256">
                             </div>
 
                             <!-- Input Imagen -->
                             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label>Imagen</label>
                                 <input type="file" class="form-control" name="imagen" id="imagen">
+                                <input type="hidden" name="imagenactual" id="imagenactual">
+                                <img src="" width="150px" height="120px" id="imagenmuestra">
                             </div>
 
                             <!-- Input Código -->
                             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label>Código</label>
-                                <input type="text" class="form-control" name="codigo" id="codigo"
-                                    placeholder="Código de barras">
+                                <input type="text" class="form-control" name="codigo" id="codigo" placeholder="Código de barras">
+                                <button type="button" class="btn btn-success" onclick="generarCodigo()">
+                                    Generar código de barras
+                                </button>
+                                <button type="button" class="btn btn-info" onclick="imprimir()">
+                                    Imprimir
+                                </button>
+                                <div id="print">
+                                    <svg id="barCode"></svg>
+                                </div>
                             </div>
 
                             <!-- Guardar -->
@@ -114,4 +127,7 @@ require 'header.php';
 require 'footer.php'
 ?>
 
+<!--Referencia a librería de códigos de barras-->
+<script type="text/javascript" src="../public/js/JsBarcode.all.min.js"></script>
+<script type="text/javascript" src="../public/js/jquery.PrintArea.js"></script>
 <script type="text/javascript" src="scripts/articulo.js"></script>

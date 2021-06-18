@@ -7,24 +7,16 @@ function init() {
     $("#formulario").on("submit", function (e) {
         guardar(e);
     });
-
-    $.post("../ajax/articulo.php?accion=categoria", function(response){
-        $("#idcategoria").html(response);
-        $('#idcategoria').selectpicker('refresh');
-    });
-
-    $("#imagenmuestra").hide();
 }
 
 function limpiar() {
-    $("#idarticulo").val("");
-    $("#codigo").val("");
     $("#nombre").val("");
-    $("#descripcion").val("");
-    $("#stock").val("");
-    $("#imagenmuestra").attr("src", "");
-    $("#imagenactual").val("");
-    $("#print").hide();
+    $("#tipoSocio").val("");
+    $("#fecNac").val("");
+    $("#domicilio").val("");
+    $("#telefono").val("");
+    $("#email").val("");   
+    $("#idSocio").val("");    
 }
 
 function mostrarForm(flag) {
@@ -34,12 +26,12 @@ function mostrarForm(flag) {
         $("#listRegistros").hide();
         $("#formRegistros").show();
         $("#btnGuardar").prop("disabled", false);
-        $("#btnAgregar").hide();
+        $("#btnagregar").hide();
     }
     else {
         $("#listRegistros").show();
         $("#formRegistros").hide();
-        $("#btnAgregar").show();
+        $("#btnagregar").show();
     }
 }
 
@@ -62,7 +54,7 @@ function listar() {
             ],
             "ajax":
             {
-                url: '../ajax/articulo.php?accion=listar',
+                url: '../ajax/socio.php?accion=listar',
                 type: "GET",
                 dataType: "json",
                 error: function (e) {
@@ -70,7 +62,7 @@ function listar() {
                 }
             },
             "bDestroy": true,
-            "iDisplayLength": 15,
+            "iDisplayLength": 5,
             "order": [[0, "desc"]]
         }
     );
@@ -82,7 +74,7 @@ function guardar(e) {
     var formData = new FormData($("#formulario")[0]);
 
     $.ajax({
-        url: "../ajax/articulo.php?accion=guardar",
+        url: "../ajax/socio.php?accion=guardar",
         type: "POST",
         data: formData,
         contentType: false,
@@ -91,7 +83,7 @@ function guardar(e) {
         success: function (datos) {
             swal({
                 title: "Éxito",
-                text: "Artículo agregado",
+                text: "Socio agregado",
                 icon: "success",
             });
             mostrarForm(false);
@@ -101,29 +93,25 @@ function guardar(e) {
     limpiar();
 }
 
-function mostrar(idarticulo) {
-    $.post("../ajax/articulo.php?accion=mostrar", { idarticulo: idarticulo }, function (data, estatus) {
+function mostrar(idsocio) {
+    $.post("../ajax/socio.php?accion=mostrar", { idsocio: idsocio }, function (data, estatus) {
         data = JSON.parse(data);
         mostrarForm(true);
 
-        $("#idarticulo").val(data.idarticulo);
-        $("#idcategoria").val(data.idcategoria);
-        $('#idcategoria').selectpicker('refresh');
-        $("#codigo").val(data.codigo);
+        $("#idSocio").val(data.idsocio);
+        $("#tipoSocio").val(data.id_tipo_socio);
         $("#nombre").val(data.nombre);
-        $("#descripcion").val(data.descripcion);
-        $("#imagenmuestra").show();
-        $("#imagenmuestra").attr("src", "../files/articulos/" + data.imagen);
-        $("#imagenactual").val(data.imagen);
-        $("#stock").val(data.stock);
-        generarCodigo();
+        $("#fecNac").val(data.fecha_nacimiento);
+        $("#domicilio").val(data.domicilio);
+        $("#telefono").val(data.telefono);
+        $("#email").val(data.email);
     });
 }
 
-function desactivar(idarticulo) {
+function desactivar(idsocio) {
 
     swal({
-        title: "¿Desactivar artículo?",
+        title: "¿Desactivar socio?",
         text: "",
         icon: "warning",
         buttons: true,
@@ -131,7 +119,7 @@ function desactivar(idarticulo) {
     })
         .then(function (result) {
             if (result) {
-                $.post("../ajax/articulo.php?accion=desactivar", { idarticulo: idarticulo }, function (e) {
+                $.post("../ajax/socio.php?accion=desactivar", { idsocio: idsocio }, function (e) {
                     swal(e, {
                         icon: "success",
                     });
@@ -142,10 +130,10 @@ function desactivar(idarticulo) {
         });
 }
 
-function activar(idarticulo) {
+function activar(idsocio) {
 
     swal({
-        title: "¿Activar artículo?",
+        title: "¿Activar socio?",
         text: "",
         icon: "warning",
         buttons: true,
@@ -153,7 +141,7 @@ function activar(idarticulo) {
     })
         .then(function (result) {
             if (result) {
-                $.post("../ajax/articulo.php?accion=activar", { idarticulo: idarticulo }, function (e) {
+                $.post("../ajax/socio.php?accion=activar", { idsocio: idsocio }, function (e) {
                     swal(e, {
                         icon: "success",
                     });
@@ -162,18 +150,6 @@ function activar(idarticulo) {
 
             }
         });
-}
-
-function generarCodigo()
-{
-    codigo = $("#codigo").val();
-    JsBarcode("#barCode", codigo);
-    $("#print").show();
-}
-
-function imprimir()
-{
-    $("#print").printArea();
 }
 
 init();

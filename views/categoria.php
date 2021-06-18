@@ -31,12 +31,13 @@ require 'header.php';
               </tbody>
               <tfoot>
                 <th>Opciones</th>
-                <th>Nombre</th>
+                <th>Nombre</th>                
                 <th>Descripción</th>
                 <th>Estado</th>
               </tfoot>
             </table>
           </div>
+
           <div class="panel-body" style="height: 400px;" id="formRegistros">
             <form name="formulario" id="formulario" method="POST">
               <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">

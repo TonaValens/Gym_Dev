@@ -17,7 +17,7 @@ switch ($_GET["accion"]) {
 
         if(!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['imagen']['tmp_name']))
         {
-            $imagen = "";
+            $imagen = $_POST["imagenactual"];
         }
         else
         {
@@ -70,10 +70,11 @@ switch ($_GET["accion"]) {
                                             <i class="fa fa-check"></i></button>',
                 "1" => $reg->nombre,
                 "2" => $reg->categoria,
-                "3" => $reg->codigo,
-                "4" => $reg->stock,
-                "5" => "<img src='../files/articulos/". $reg->imagen ."' height='50px' width='50px'>",
-                "6" => ($reg->activo) ? '<span class="label bg-green">Activada</span>' : 
+                "3" => $reg->descripcion,
+                "4" => $reg->codigo,
+                "5" => $reg->stock,
+                "6" => "<img src='../files/articulos/". $reg->imagen ."' height='50px' width='50px'>",
+                "7" => ($reg->activo) ? '<span class="label bg-green">Activada</span>' : 
                                         '<span class="label bg-red">Desactivada</span>'
             );
         }

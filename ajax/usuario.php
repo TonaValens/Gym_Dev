@@ -6,7 +6,7 @@ $usuario = new Usuario();
 $idusuario = isset($_POST["idcategoria"]) ? limpiarCadena($_POST["idcategoria"]) : "";
 $nombre = isset($_POST["nombre"]) ? limpiarCadena($_POST["nombre"]) : "";
 $email = isset($_POST["email"]) ? limpiarCadena($_POST["email"]) : "";
-$usr = isset($_POST["usr"]) ? limpiarCadena($_POST["usr"]) : "";
+$usr = isset($_POST["usuario"]) ? limpiarCadena($_POST["usuario"]) : "";
 $pwd = isset($_POST["pwd"]) ? limpiarCadena($_POST["pwd"]) : "";
 $rol = isset($_POST["rol"]) ? limpiarCadena($_POST["rol"]) : "";
 $imagen = isset($_POST["imagen"]) ? limpiarCadena($_POST["imagen"]) : "";
@@ -30,11 +30,14 @@ switch ($_GET["accion"]) {
             }
         }
 
-        if (empty($idarticulo)) {
-            $response = $usuario->insertar($nombre, $email, $usr, $pwd, $rol, $imagen);
+        //Cifrar contraseña
+        $clavehash = hash("SHA256", $pwd);
+
+        if (empty($idusuario)) {
+            $response = $usuario->insertar($nombre, $email, $usr, $clavehash, $rol, $imagen);
             echo $response ? "Usuario creado" : "Error al crear el usuario";
         } else {
-            $response = $usuario->editar($idusuario, $nombre, $email, $usr, $pwd, $rol, $imagen);
+            $response = $usuario->editar($idusuario, $nombre, $email, $usr, $clavehash, $rol, $imagen);
             echo $response ? "Usuario actualizado" : "Error al actualizar el usuario";
         }
         break;

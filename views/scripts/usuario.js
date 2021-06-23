@@ -15,7 +15,7 @@ function limpiar() {
     $("#idusuario").val("");
     $("#nombre").val("");
     $("#email").val("");
-    $("#usr").val("");
+    $("#usuario").val("");
     $("#pwd").val("");
     $("#rol").val("");
     $("#imagenmuestra").attr("src", "");
@@ -103,7 +103,7 @@ function mostrar(idusuario) {
 
         $("#idusuario").val(data.idusuario);
         $("#nombre").val(data.nombre);        
-        $("#usr").val(data.usr);
+        $("#usuario").val(data.usr);
         $("#pwd").val(data.pwd);
         $("#rol").val(data.rol);
         $("#imagenmuestra").show();
@@ -112,7 +112,7 @@ function mostrar(idusuario) {
     });
 }
 
-function desactivar(idarticulo) {
+function desactivar(idusuario) {
 
     swal({
         title: "¿Desactivar usuario?",
@@ -123,7 +123,7 @@ function desactivar(idarticulo) {
     })
         .then(function (result) {
             if (result) {
-                $.post("../ajax/usuario.php?accion=desactivar", { idarticulo: idarticulo }, function (e) {
+                $.post("../ajax/usuario.php?accion=desactivar", { idusuario: idusuario }, function (e) {
                     swal(e, {
                         icon: "success",
                     });
@@ -134,7 +134,7 @@ function desactivar(idarticulo) {
         });
 }
 
-function activar(idarticulo) {
+function activar(idusuario) {
 
     swal({
         title: "¿Activar usuario?",
@@ -145,7 +145,7 @@ function activar(idarticulo) {
     })
         .then(function (result) {
             if (result) {
-                $.post("../ajax/usuario.php?accion=activar", { idarticulo: idarticulo }, function (e) {
+                $.post("../ajax/usuario.php?accion=activar", { idusuario: idusuario }, function (e) {
                     swal(e, {
                         icon: "success",
                     });

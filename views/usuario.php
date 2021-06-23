@@ -54,35 +54,34 @@ require 'header.php';
                             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label>Nombre(*)</label>
                                 <input type="hidden" name="idusuario" id="idusuario">
-                                <input type="text" class="form-control" name="nombre" id="nombre" 
-                                    placeholder="Nombre" maxlength="100" required>
-                            </div>   
+                                <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" maxlength="100" required>
+                            </div>
 
                             <!-- Input Email -->
                             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <label>Email(*)</label>                                
-                                <input type="text" class="form-control" name="email" id="email" 
-                                    placeholder="ejemplo@gmail.com" maxlength="100" required>
-                            </div>                          
+                                <label>Email(*)</label>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="ejemplo@gmail.com" maxlength="100" required>
+                            </div>
 
                             <!-- Input Usuario -->
                             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <label>Usuario(*)</label>                                
-                                <input type="text" class="form-control" name="usuario" id="usuario" 
-                                    maxlength="20" required>
-                            </div>  
+                                <label>Usuario(*)</label>
+                                <input type="text" class="form-control" name="usuario" id="usuario" maxlength="20" required>
+                            </div>
 
                             <!-- Input Password -->
                             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <label>Contraseña(*)</label>                                
-                                <input type="text" class="form-control" name="pwd" id="pwd" 
-                                    maxlength="64" required>
-                            </div> 
+                                <label>Contraseña(*)</label>
+                                <input type="password" class="form-control" name="pwd" id="pwd" maxlength="64" required>
+                            </div>
 
                             <!-- Select Rol -->
                             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label>Rol(*)</label>
-                                <select name="idrol" id="idro" class="form-control selectpicker" data-live-search="true" required></select>
+                                <select name="rol" id="rol" class="form-control selectpicker" data-live-search="true" required>
+                                    <option value="Administrador">Administrador</option>
+                                    <option value="Estándar">Estándar</option>
+                                </select>
                             </div>
 
                             <!-- Input Imagen -->
@@ -91,7 +90,7 @@ require 'header.php';
                                 <input type="file" class="form-control" name="imagen" id="imagen">
                                 <input type="hidden" name="imagenactual" id="imagenactual">
                                 <img src="" width="150px" height="120px" id="imagenmuestra">
-                            </div>                            
+                            </div>
 
                             <!-- Guardar -->
                             <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
